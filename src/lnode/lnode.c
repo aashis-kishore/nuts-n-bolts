@@ -27,6 +27,14 @@ void link_node(LNode* n1, LNode* n2) {
   }
 }
 
+LNode* next_node(LNode* node) {
+  if (node) {
+    return node->next;
+  }
+
+  return NULL;
+}
+
 void del_node(LNode* node) {
   if (node) {
     free(node);
