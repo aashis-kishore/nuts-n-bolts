@@ -13,4 +13,4 @@ macro(addTest TARGET_NAME SOURCES LIBRARIES)
   )
 endmacro()
 
-add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/test_lnode)
+add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/lnode_test)
