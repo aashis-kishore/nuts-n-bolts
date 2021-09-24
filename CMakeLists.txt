@@ -14,7 +14,7 @@ set(CMAKE_INCLUDE_OUTPUT_DIRECTORY ${PROJECT_SOURCE_DIR}/include)
 
 add_subdirectory(${PROJECT_SOURCE_DIR}/src)
 
-option(BUILD_TESTS "Build included tests" ON)
+option(BUILD_TESTS "Build included tests" OFF)
 
 if(BUILD_TESTS)
   include(FetchContent)
