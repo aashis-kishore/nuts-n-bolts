@@ -11,7 +11,7 @@ LNode* new_node(void* data) {
   LNode* node = calloc(1, sizeof(LNode));
 
   if (!node) {
-    perror('Unable to allocate memory\n');
+    perror("Unable to allocate memory\n");
     return node;
   }
 
