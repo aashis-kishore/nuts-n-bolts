@@ -47,3 +47,15 @@ TEST(LNodeTest, create_three_lnodes_and_link) {
   del_node(mname);
   del_node(lname);
 }
+
+TEST(LNodeTest, store_and_retrieve_data) {
+  std::string full_name = "John Conman Doe";
+
+  LNode* name = new_node(&full_name);
+
+  std::string* data = static_cast<std::string*>(get_data(name));
+
+  EXPECT_STREQ((*data).c_str(), full_name.c_str());
+
+  del_node(name);
+}
