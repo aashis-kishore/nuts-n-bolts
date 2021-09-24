@@ -4,7 +4,11 @@ extern "C" {
   #include "lnode.h"
 }
 
-TEST(TestLNode, sum_to_numbers) {
-  int x = 10, y = 20;
-  EXPECT_EQ(x + y, 30);
+TEST(LNodeTest, create_new_lnode) {
+  std::string name = "Aashis Kishore";
+  LNode* lnode = new_node(&name);
+
+  EXPECT_NE(lnode, nullptr);
+
+  del_node(lnode);
 }
