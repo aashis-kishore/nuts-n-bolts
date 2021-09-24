@@ -1,20 +1,12 @@
-OUT_DIR=build
-CC=gcc
-CFLAGS=-Werror -Wpedantic
+OUT_DIR="build"
 
-all: trie
+all: build
 
-run-trie: trie
-	@echo
-	./build/trie
-
-trie: src/*.c
-	mkdir -p $(OUT_DIR)
-	$(CC) $^ -o $(OUT_DIR)/$@ $(CFLAGS)
+build:
+  mkdir -p $(OUT_DIR)
+  cd $(OUT_DIR) && cmake .. && make
 
 .phony: clean
 
 clean:
-	rm -rf $(OUT_DIR)
-
-
+  rm -rf $(OUT_DIR)
