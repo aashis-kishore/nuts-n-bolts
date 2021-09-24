@@ -1,8 +1,10 @@
 name: Build Project
 
 on:
+  push:
+    branches: [staging]
   pull_request:
-    branches: ['staging']
+    branches: [staging]
 
   workflow_dispatch:
 
@@ -12,8 +14,12 @@ jobs:
     steps:
       - name: Checkout
       - uses: actions/checkout@v2
-      - name: Build project and run tests
-      - uses: nicledomaS/cmake_build_action@v1.4
-        with:
-          run_tests: ON
-          unit_test_build: -DBUILD_TESTS=ON
+      - uses: lukka/run-cmake@v3.4
+      - name: Build project
+        run: |
+          make clean
+          make build-test
+      - name: Run tests
+        run: |
+          make test
+          
