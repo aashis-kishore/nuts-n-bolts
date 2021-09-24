@@ -4,7 +4,7 @@ cmake_policy(SET CMP0048 NEW)
 
 project(
   nuts-n-bolts
-  VERSION 0.0.1
+  VERSION 0.1.0
   DESCRIPTION "An attempt to implement to fundamental datastructures and algorithms"
   LANGUAGES C CXX
 )
