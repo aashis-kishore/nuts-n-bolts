@@ -35,6 +35,14 @@ LNode* next_node(LNode* node) {
   return NULL;
 }
 
+void* get_data(LNode* node) {
+  if (node) {
+    return node->data;
+  }
+
+  return NULL;
+}
+
 void del_node(LNode* node) {
   if (node) {
     free(node);
