@@ -14,34 +14,6 @@ set(CMAKE_INCLUDE_OUTPUT_DIRECTORY ${PROJECT_SOURCE_DIR}/include)
 
 add_subdirectory(${PROJECT_SOURCE_DIR}/src)
 
-# include(ExternalProject)
-
-# if(NOT CMAKE_BUILD_TYPE)
-#   set(CMAKE_BUILD_TYPE Release)
-# endif()
-
-# set_directory_properties(PROPERTIES EP_PREFIX ${CMAKE_BINARY_DIR}/ThirdParty)
-
-# ExternalProject_Add(
-#   googletest
-#   URL https://github.com/google/googletest/archive/release-1.10.0.zip
-#   PREFIX ${CMAKE_CURRENT_BINARY_DIR}/gtest
-#   # Disable install step
-#   CMAKE_ARGS -DCMAKE_BUILD_TYPE=${CMAKE_BUILD_TYPE}
-#              -DCMAKE_ARCHIVE_OUTPUT_DIRECTORY_DEBUG:PATH=DebugLibs
-#              -DCMAKE_ARCHIVE_OUTPUT_DIRECTORY_RELEASE:PATH=ReleaseLibs
-#              -Dgtest_force_shared_crt=ON
-#   INSTALL_COMMAND ""
-#   # Wrap download, configure and build steps in a script to log output
-#   LOG_DOWNLOAD ON
-#   LOG_CONFIGURE ON
-#   LOG_BUILD ON
-# )
-
-# # Specify include dir
-# ExternalProjects_Get_Property(googletest source_dir)
-# include_directories(${source_dir}/include)
-
 option(BUILD_TESTS "Build included tests" ON)
 
 if(BUILD_TESTS)
