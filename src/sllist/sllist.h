@@ -5,10 +5,10 @@
 
 typedef struct _SLList SLList;
 
-SLList* sll_new_list();
-void sll_append_data(SLList* list, void* data);
-void* sll_get_data(SLList* list, size_t at);
-size_t sll_len_list(SLList* list);
-void sll_del_list(SLList* list);
+SLList* sll_new();
+void sll_append(SLList* list, void* data);
+void* sll_data(SLList* list, size_t at);
+size_t sll_len(SLList* list);
+void sll_del(SLList* list);
 
 #endif

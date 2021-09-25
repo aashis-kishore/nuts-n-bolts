@@ -10,7 +10,7 @@ typedef struct _SLList {
   SLNode* end;
 } SLList;
 
-SLList* sll_new_list() {
+SLList* sll_new() {
   SLList* list = calloc(1, sizeof(SLList));
 
   if (!list) {
@@ -25,9 +25,9 @@ SLList* sll_new_list() {
   return list;
 }
 
-void sll_append_data(SLList* list, void* data) {
+void sll_append(SLList* list, void* data) {
   if (list) {
-    SLNode* node = sln_new_node(data);
+    SLNode* node = sln_new(data);
 
     if (!node) {
       perror("Unable to append data to list\n");
@@ -40,38 +40,38 @@ void sll_append_data(SLList* list, void* data) {
       return;
     }
 
-    sln_link_node(list->end, node);
+    sln_link(list->end, node);
     list->end = node;
     list->length++;
   }
 }
 
-void* sll_get_data(SLList* list, size_t at) {
+void* sll_data(SLList* list, size_t at) {
   if (list && at < list->length) {
     SLNode* node = list->begin;
 
     size_t i = 0;
     while (node && i < at) {
-      node = sln_next_node(node);
+      node = sln_next(node);
       i++;
     }
 
-    return sln_get_data(node);
+    return sln_data(node);
   }
 
   return NULL;
 }
 
-size_t sll_len_list(SLList* list) { return list ? list->length : 0; }
+size_t sll_len(SLList* list) { return list ? list->length : 0; }
 
-void sll_del_list(SLList* list) {
+void sll_del(SLList* list) {
   if (list) {
     if (list->begin && list->end) {
       SLNode* node = list->begin;
 
       while (node) {
-        list->begin = sln_next_node(node);
-        sln_del_node(node);
+        list->begin = sln_next(node);
+        sln_del(node);
         node = list->begin;
       }
     }

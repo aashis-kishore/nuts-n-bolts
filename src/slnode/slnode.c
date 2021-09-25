@@ -8,7 +8,7 @@ typedef struct _SLNode {
   struct _SLNode* next;
 } SLNode;
 
-SLNode* sln_new_node(void* data) {
+SLNode* sln_new(void* data) {
   SLNode* node = calloc(1, sizeof(SLNode));
 
   if (!node) {
@@ -22,13 +22,13 @@ SLNode* sln_new_node(void* data) {
   return node;
 }
 
-void sln_link_node(SLNode* n1, SLNode* n2) {
+void sln_link(SLNode* n1, SLNode* n2) {
   if (n1 && n2) {
     n1->next = n2;
   }
 }
 
-SLNode* sln_next_node(SLNode* node) {
+SLNode* sln_next(SLNode* node) {
   if (node) {
     return node->next;
   }
@@ -36,7 +36,7 @@ SLNode* sln_next_node(SLNode* node) {
   return NULL;
 }
 
-void* sln_get_data(SLNode* node) {
+void* sln_data(SLNode* node) {
   if (node) {
     return node->data;
   }
@@ -44,7 +44,7 @@ void* sln_get_data(SLNode* node) {
   return NULL;
 }
 
-void sln_del_node(SLNode* node) {
+void sln_del(SLNode* node) {
   if (node) {
     free(node);
     node = NULL;
