@@ -64,3 +64,19 @@ TEST(SLListTest, get_data_at_non_existant_index_from_list) {
 
   sll_del(list);
 }
+
+TEST(SLListTest, remove_data_at_index_from_list) {
+  std::string names[]{"John", "Conman", "Doe"};
+
+  SLList* list = sll_new();
+
+  sll_append(list, &names[0]);
+  sll_append(list, &names[1]);
+  sll_append(list, &names[2]);
+
+  sll_remove(list, 1);
+
+  EXPECT_EQ(sll_len(list), (sizeof(names) / sizeof(names[0])) - 1);
+
+  sll_del(list);
+}

@@ -46,6 +46,36 @@ void sll_append(SLList* list, void* data) {
   }
 }
 
+void* sll_remove(SLList* list, size_t at) {
+  void* data = NULL;
+
+  if (list && at < list->length) {
+    SLNode* prev = NULL;
+    SLNode* node = list->begin;
+
+    size_t i = 0;
+    while(node && i < at) {
+      prev = node;
+      node = sln_next(node);
+      i++;
+    }
+
+    if (prev && node) {
+      sln_link(prev, sln_next(node));
+      data = sln_data(node);
+    } else if (!prev) {
+      list->begin = sln_next(list->begin);
+    } else if (!sln_next(node)) {
+      list->end = prev;
+    }
+
+    sln_del(node);
+    list->length--;
+  }
+
+  return data;
+}
+
 void* sll_data(SLList* list, size_t at) {
   if (list && at < list->length) {
     SLNode* node = list->begin;

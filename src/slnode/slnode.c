@@ -36,12 +36,24 @@ SLNode* sln_next(SLNode* node) {
   return NULL;
 }
 
+void sln_set_next(SLNode* node, SLNode* next) {
+  if (node) {
+    node->next = next;
+  }
+}
+
 void* sln_data(SLNode* node) {
   if (node) {
     return node->data;
   }
 
   return NULL;
+}
+
+void sln_set_data(SLNode* node, void* data) {
+  if (node) {
+    node->data = data;
+  }
 }
 
 void sln_del(SLNode* node) {

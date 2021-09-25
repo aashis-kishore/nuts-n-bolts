@@ -6,7 +6,9 @@ typedef struct _SLNode SLNode;
 SLNode* sln_new(void* data);
 void sln_link(SLNode* n1, SLNode* n2);
 SLNode* sln_next(SLNode* node);
+void sln_set_next(SLNode* node, SLNode* next);
 void* sln_data(SLNode* node);
+void sln_set_data(SLNode* node, void* data);
 void sln_del(SLNode* node);
 
 #endif
