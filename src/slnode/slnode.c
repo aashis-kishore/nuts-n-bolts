@@ -1,14 +1,15 @@
+#include "slnode.h"
+
 #include <stdio.h>
 #include <stdlib.h>
-#include "lnode.h"
 
-typedef struct _LNode {
+typedef struct _SLNode {
   void* data;
-  struct _LNode* next;
-} LNode;
+  struct _SLNode* next;
+} SLNode;
 
-LNode* new_node(void* data) {
-  LNode* node = calloc(1, sizeof(LNode));
+SLNode* sln_new(void* data) {
+  SLNode* node = calloc(1, sizeof(SLNode));
 
   if (!node) {
     perror("Unable to allocate memory\n");
@@ -21,13 +22,13 @@ LNode* new_node(void* data) {
   return node;
 }
 
-void link_node(LNode* n1, LNode* n2) {
+void sln_link(SLNode* n1, SLNode* n2) {
   if (n1 && n2) {
     n1->next = n2;
   }
 }
 
-LNode* next_node(LNode* node) {
+SLNode* sln_next(SLNode* node) {
   if (node) {
     return node->next;
   }
@@ -35,7 +36,15 @@ LNode* next_node(LNode* node) {
   return NULL;
 }
 
-void del_node(LNode* node) {
+void* sln_data(SLNode* node) {
+  if (node) {
+    return node->data;
+  }
+
+  return NULL;
+}
+
+void sln_del(SLNode* node) {
   if (node) {
     free(node);
     node = NULL;
