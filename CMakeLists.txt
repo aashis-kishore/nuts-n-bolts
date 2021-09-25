@@ -4,10 +4,10 @@ cmake_policy(SET CMP0048 NEW)
 
 project(
   nuts-n-bolts
-  VERSION 0.0.1
-  DESCRIPTION "An attempt to implement to fundamental datastructures and algorithms"
-  LANGUAGES C CXX
-)
+  VERSION 0.2.0
+  DESCRIPTION
+    "An attempt to implement to fundamental datastructures and algorithms"
+  LANGUAGES C CXX)
 
 set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${PROJECT_SOURCE_DIR}/lib)
 set(CMAKE_INCLUDE_OUTPUT_DIRECTORY ${PROJECT_SOURCE_DIR}/include)
@@ -24,7 +24,9 @@ if(BUILD_TESTS)
     # CMAKE_ARGS -DBUILD_GMOCK=OFF
   )
 
-  set(gtest_force_shared_crt ON CACHE BOOL "" FORCE)
+  set(gtest_force_shared_crt
+      ON
+      CACHE BOOL "" FORCE)
   FetchContent_MakeAvailable(googletest)
 
   enable_testing()
