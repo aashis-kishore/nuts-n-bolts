@@ -45,6 +45,22 @@ void append_data(LList* list, void* data) {
   }
 }
 
+void* ll_get_data(LList* list, size_t at) {
+  if (list && at < list->length) {
+    LNode* node = list->begin;
+
+    size_t i = 0;
+    while (node && i < at) {
+      node = next_node(node);
+      i++;
+    }
+
+    return get_data(node);
+  }
+
+  return NULL;
+}
+
 size_t len_list(LList* list) {
   return list ? list->length : 0;
 }
