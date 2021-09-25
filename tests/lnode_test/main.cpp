@@ -59,3 +59,22 @@ TEST(LNodeTest, store_and_retrieve_data) {
 
   del_node(name);
 }
+
+TEST(LNodeTest, store_retrieve_composite_data) {
+  struct Person {
+    std::string name;
+    int age;
+  };
+
+  Person student{"John Doe", 25};
+
+  LNode* person = new_node(&student);
+
+  std::string name = static_cast<Person*>(get_data(person))->name;
+  int age = static_cast<Person*>(get_data(person))->age;
+
+  EXPECT_STREQ(name.c_str(), student.name.c_str());
+  EXPECT_EQ(age, student.age);
+
+  del_node(person);
+}
