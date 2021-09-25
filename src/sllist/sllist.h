@@ -6,6 +6,7 @@
 typedef struct _SLList SLList;
 
 SLList* sll_new();
+void sll_insert(SLList* list, void* data, size_t at);
 void sll_append(SLList* list, void* data);
 void* sll_remove(SLList* list, size_t at);
 void* sll_data(SLList* list, size_t at);

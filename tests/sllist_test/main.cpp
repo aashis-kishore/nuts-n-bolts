@@ -88,3 +88,33 @@ TEST(SLListTest, remove_data_at_index_from_list) {
 
   sll_del(list);
 }
+
+TEST(SLListTest, insert_data_at_index_in_list) {
+  std::string names[]{"Mr", "John", "Conman", "Doe", "Well-known"};
+
+  SLList* list = sll_new();
+
+  sll_append(list, &names[1]);
+  sll_append(list, &names[3]);
+
+  sll_insert(list, &names[0], 0);
+  std::string* name = static_cast<std::string*>(sll_data(list, 0));
+  EXPECT_STREQ((*name).c_str(), names[0].c_str());
+
+  sll_insert(list, &names[2], 2);
+  name = static_cast<std::string*>(sll_data(list, 2));
+  EXPECT_STREQ((*name).c_str(), names[2].c_str());
+
+  sll_insert(list, &names[4], 4);
+  name = static_cast<std::string*>(sll_data(list, 4));
+  EXPECT_STREQ((*name).c_str(), names[4].c_str());
+
+  EXPECT_EQ(sll_len(list), 5);
+
+  size_t len = sll_len(list);
+  sll_insert(list, &names[0], len);
+  name = static_cast<std::string*>(sll_data(list, len));
+  EXPECT_STREQ((*name).c_str(), names[0].c_str());
+
+  sll_del(list);
+}

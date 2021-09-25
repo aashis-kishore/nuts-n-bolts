@@ -25,6 +25,40 @@ SLList* sll_new() {
   return list;
 }
 
+void sll_insert(SLList* list, void* data, size_t at) {
+  if (list && at >= 0 && at <= list->length) {
+    SLNode* new_node = sln_new(data);
+
+    if (!new_node) {
+      perror("Unable to insert data into list\n");
+      return;
+    }
+
+    SLNode* prev = NULL;
+    SLNode* node = list->begin;
+
+    size_t i = 0;
+    while(node && i < at) {
+      prev = node;
+      node = sln_next(node);
+      i++;
+    }
+
+    if (prev && node) {
+      sln_link(prev, new_node);
+      sln_link(new_node, node);
+    } else if (!prev) {
+      sln_link(new_node, list->begin);
+      list->begin = new_node;
+    } else if (!sln_next(node)) {
+      sln_link(list->end, new_node);
+      list->end = new_node;
+    }
+
+    list->length++;
+  }
+}
+
 void sll_append(SLList* list, void* data) {
   if (list) {
     SLNode* node = sln_new(data);
