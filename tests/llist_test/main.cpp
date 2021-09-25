@@ -17,9 +17,9 @@ TEST(LListTest, append_data_into_llist) {
 
   LList* llist = new_list();
 
-  append_data(&names[0]);
-  append_data(&names[1]);
-  append_data(&names[2]);
+  append_data(llist, &names[0]);
+  append_data(llist, &names[1]);
+  append_data(llist, &names[2]);
 
   EXPECT_EQ(len_list(llist), sizeof(names)/sizeof(names[0]));
 
