@@ -62,15 +62,20 @@ void* sll_remove(SLList* list, size_t at) {
 
     if (prev && node) {
       sln_link(prev, sln_next(node));
-      data = sln_data(node);
     } else if (!prev) {
       list->begin = sln_next(list->begin);
     } else if (!sln_next(node)) {
       list->end = prev;
+      sln_set_next(list->end, NULL);
     }
 
+    data = sln_data(node);
     sln_del(node);
     list->length--;
+
+    if (list->length == 0) {
+      list->begin = list->end = NULL;
+    }
   }
 
   return data;

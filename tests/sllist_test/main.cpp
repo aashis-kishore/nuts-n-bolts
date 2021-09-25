@@ -75,8 +75,16 @@ TEST(SLListTest, remove_data_at_index_from_list) {
   sll_append(list, &names[2]);
 
   sll_remove(list, 1);
-
   EXPECT_EQ(sll_len(list), (sizeof(names) / sizeof(names[0])) - 1);
+  sll_remove(list, 0);
+  EXPECT_EQ(sll_len(list), (sizeof(names) / sizeof(names[0])) - 2);
+  std::string* lname = static_cast<std::string*>(sll_remove(list, 0));
+  EXPECT_EQ(sll_len(list), (sizeof(names) / sizeof(names[0])) - 3);
+  EXPECT_STREQ((*lname).c_str(), names[2].c_str());
+  void* data = sll_remove(list, 0);
+  EXPECT_EQ(data, nullptr);
+  data = sll_remove(list, 1010);
+  EXPECT_EQ(data, nullptr);
 
   sll_del(list);
 }
