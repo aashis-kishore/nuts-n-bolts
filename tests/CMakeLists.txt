@@ -9,3 +9,4 @@ endmacro()
 
 add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/slnode_test)
 add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/sllist_test)
+add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/slstack_test)
