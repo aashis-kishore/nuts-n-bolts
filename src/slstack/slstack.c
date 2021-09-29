@@ -27,6 +27,14 @@ SLStack* sls_new() {
   return stack;
 }
 
+bool sls_is_empty(SLStack* stack) {
+  if (stack && stack->list) {
+    return !sll_len(stack->list);
+  }
+
+  return false;
+}
+
 void sls_del(SLStack* stack) {
   if (stack) {
     if (stack->list) {
