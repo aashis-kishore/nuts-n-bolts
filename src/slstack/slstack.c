@@ -35,11 +35,31 @@ bool sls_is_empty(SLStack* stack) {
   return false;
 }
 
+void sls_push(SLStack* stack, void* data) {
+  if (stack) {
+    sll_insert(stack->list, data, 0);
+  }
+}
+
+void* sls_peek(SLStack* stack) {
+  if (stack) {
+    return sll_data(stack->list, 0);
+  }
+
+  return NULL;
+}
+
+void* sls_pop(SLStack* stack) {
+  if (stack) {
+    return sll_remove(stack->list, 0);
+  }
+
+  return NULL;
+}
+
 void sls_del(SLStack* stack) {
   if (stack) {
-    if (stack->list) {
-      sll_del(stack->list);
-    }
+    sll_del(stack->list);
 
     free(stack);
     stack = NULL;
