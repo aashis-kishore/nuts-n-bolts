@@ -26,7 +26,9 @@ SLList* sll_new() {
 }
 
 void sll_insert(SLList* list, void* data, size_t at) {
-  if (list && at >= 0 && at <= list->length) {
+  if (list) {
+    (at > list->length) && (at = list->length);
+
     SLNode* new_node = sln_new(data);
 
     if (!new_node) {
@@ -44,15 +46,16 @@ void sll_insert(SLList* list, void* data, size_t at) {
       i++;
     }
 
-    if (prev && node) {
-      sln_link(prev, new_node);
-      sln_link(new_node, node);
-    } else if (!prev) {
-      sln_link(new_node, list->begin);
+    if (!prev) {
+      sln_set_next(new_node, list->begin);
       list->begin = new_node;
-    } else if (!sln_next(node)) {
-      sln_link(list->end, new_node);
+      !list->end && (list->end = new_node);
+    } else if (!node) {
+      sln_set_next(list->end, new_node);
       list->end = new_node;
+    } else {
+      sln_set_next(prev, new_node);
+      sln_set_next(new_node, node);
     }
 
     list->length++;
@@ -60,24 +63,7 @@ void sll_insert(SLList* list, void* data, size_t at) {
 }
 
 void sll_append(SLList* list, void* data) {
-  if (list) {
-    SLNode* node = sln_new(data);
-
-    if (!node) {
-      perror("Unable to append data to list\n");
-      return;
-    }
-
-    if (!(list->begin && list->end)) {
-      list->begin = list->end = node;
-      list->length++;
-      return;
-    }
-
-    sln_link(list->end, node);
-    list->end = node;
-    list->length++;
-  }
+  sll_insert(list, data, list->length);
 }
 
 void* sll_remove(SLList* list, size_t at) {
